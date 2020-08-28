@@ -14,43 +14,60 @@
 
 // dichiaro variabili
 var mine = 6;
-var tentativi = 10;
-var posizioneMine = [];
-var posizioneUtente = [];
+var attempts = 100;
+var minePosition = [];
+var userPosition = [];
+
+// funzione che dato array e numero mi controlla se e' stato gia' inserito
+function isDuplicate(numList, numInserted) {
+  for (var i = 0; i < numList.length; i++) {
+    if (numList[i] == numInserted){
+      var positionOn = true;
+    }
+  }
+  return positionOn;
+}
 
 
 // creo un ciclo che mi genera 16 numeri
 for (var i = 0; i < mine; i++) {
-  // while (isDuplicated == true) {
-  //  var numeroCpu = Math.floor(Math.random() * 10) + 1;
-  //  isDuplicated = checkDuplicate(posizioneMine, numeroCpu);
-  // }
   do {
-   var numeroCpu = Math.floor(Math.random() * 10) + 1;
- } while (checkDuplicate(posizioneMine, numeroCpu));
-  posizioneMine[i] = numeroCpu;
+   var numCpu = Math.floor(Math.random() * attempts) + 1;
+ } while (isDuplicate(minePosition, numCpu));
+  minePosition[i] = numCpu;
 }
-console.log(posizioneMine);
+console.log(minePosition);
 
 
+// chiedo all'utente di inseerire tot numeri
+var i = 0;
+var isMine = false;
+while (i < (attempts - mine) && isMine == false) {
+  var numUser = parseInt(prompt("inserisci un numero"));
 
-// funzione che dato array e numero mi controlla se e' stato gia' inserito
-function checkDuplicate(listaNumeri, numeroInserito) {
-  for (var i = 0; i < listaNumeri.length; i++) {
-    if (listaNumeri[i] == numeroInserito){
-      var posizioneDuplicata = true;
-    }
-  }
-  return posizioneDuplicata;
-}
-
-// creo ciclo per (100-16) volte e chiedo all'utente di inserire un numeroCpu
-for (var i = 0; i < (100 - 95); i++) {
-  var isDuplicated = true;
+   var isDuplicated = isDuplicate(userPosition, numUser);
+  console.log(isDuplicated);
   while (isDuplicated == true) {
-    numeroUtente = parseInt(prompt("inserisci un numero da 1 a 5"));
-    isDuplicated = checkDuplicate(posizioneUtente, numeroUtente);
+    numUser = parseInt(prompt("sbagliato reinserisci un numero"));
+    isDuplicated = isDuplicate(userPosition, numUser);
   }
-  posizioneUtente[i] = numeroUtente;
+
+
+  isMine = isDuplicate(minePosition, numUser);
+  if (isMine) {
+    alert("mi spiace e' esplosa la mina!");
+  }else {
+    userPosition[i] = numUser;
+
+    if (i == (attempts - mine) - 1){
+      alert("complimenti hai vinto! Sei arrivato al " + i + " livello");
+      alert("Hai vinto con i seguenti numeri " + userPosition)
+      isMine = true;
+    }
+
+  }
+  console.log(userPosition);
+  console.log(i);
+  i++;
+  console.log(i);
 }
-console.log(posizioneUtente);
