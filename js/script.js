@@ -27,12 +27,12 @@ for (var i = 0; i < mine; i++) {
 console.log(posizioneMine);
 
 // funzione che dato array e numero mi controlla se e' stato gia' inserito
-function checkDuplicate(array[], numeroInserito) {
+function checkDuplicate(array, numeroInserito) {
   var posizioneDuplicata = false;
   for (var i = 0; i < array.length; i++) {
     if (array[i] == numeroInserito){
       posizioneDuplicata = true;
-      --i;
+      return posizioneDuplicata;
     }
   }
 }
