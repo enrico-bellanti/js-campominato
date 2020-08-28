@@ -12,22 +12,30 @@
 // con difficoltà 2 => tra 1 e 50
 //
 
+// dichiaro variabili
+var mine = 6;
+var tentativi = 10;
+var posizioneMine = [];
+var posizioneUtente = [];
 
-// Il computer deve generare 16 numeri casuali tra 1 e 100.
-var mine = [];
 
-for (var i = 0; i < 3; i++) {
-  mine[i] = Math.floor(Math.random() * 100) + 1;
+// creo un ciclo che mi genera 16 numeri
+for (var i = 0; i < mine; i++) {
+   var numeroCpu = Math.floor(Math.random() * 10) + 1;
+   posizioneMine[i] = numeroCpu;
 }
-console.log(mine);
-// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
-var numeriUtente = [];
+console.log(posizioneMine);
 
-for (var i = 0; i < 3; i++) {
-  numeriUtente[i] = parseInt(prompt("inserisci il " + (i+1) + " numero da 1 a 100"));
+// funzione che dato array e numero mi controlla se e' stato gia' inserito
+function checkDuplicate(array[], numeroInserito) {
+  var posizioneDuplicata = false;
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] == numeroInserito){
+      posizioneDuplicata = true;
+      --i;
+    }
+  }
 }
-console.log(numeriUtente);
 
 
-
-// funzione controlla numero in array
+console.log(checkDuplicate(posizioneMine, 7));
