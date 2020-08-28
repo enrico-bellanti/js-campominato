@@ -21,14 +21,18 @@ var posizioneUtente = [];
 
 // creo un ciclo che mi genera 16 numeri
 for (var i = 0; i < mine; i++) {
-  var isDuplicated = true;
-  while (isDuplicated == true) {
+  // while (isDuplicated == true) {
+  //  var numeroCpu = Math.floor(Math.random() * 10) + 1;
+  //  isDuplicated = checkDuplicate(posizioneMine, numeroCpu);
+  // }
+  do {
    var numeroCpu = Math.floor(Math.random() * 10) + 1;
-   isDuplicated = checkDuplicate(posizioneMine, numeroCpu);
-  }
+ } while (checkDuplicate(posizioneMine, numeroCpu));
   posizioneMine[i] = numeroCpu;
 }
 console.log(posizioneMine);
+
+
 
 // funzione che dato array e numero mi controlla se e' stato gia' inserito
 function checkDuplicate(listaNumeri, numeroInserito) {
