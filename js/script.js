@@ -21,27 +21,32 @@ var posizioneUtente = [];
 
 // creo un ciclo che mi genera 16 numeri
 for (var i = 0; i < mine; i++) {
- var isDuplicated = true;
- while (isDuplicated == true) {
+  var isDuplicated = true;
+  while (isDuplicated == true) {
    var numeroCpu = Math.floor(Math.random() * 10) + 1;
    isDuplicated = checkDuplicate(posizioneMine, numeroCpu);
- }
- posizioneMine[i] = numeroCpu;
+  }
+  posizioneMine[i] = numeroCpu;
 }
 console.log(posizioneMine);
 
 // funzione che dato array e numero mi controlla se e' stato gia' inserito
 function checkDuplicate(listaNumeri, numeroInserito) {
-  var posizioneDuplicata = false;
   for (var i = 0; i < listaNumeri.length; i++) {
     if (listaNumeri[i] == numeroInserito){
-      posizioneDuplicata = true;
+      var posizioneDuplicata = true;
     }
   }
   return posizioneDuplicata;
 }
 
-//creo ciclo per (100-16) volte e chiedo all'utente di inserire un numeroCpu
-for (var i = 0; i < (100 - 16); i++) {
-  posizioneUtente[i] = prompt("inserisci un numero");
+// creo ciclo per (100-16) volte e chiedo all'utente di inserire un numeroCpu
+for (var i = 0; i < (100 - 95); i++) {
+  var isDuplicated = true;
+  while (isDuplicated == true) {
+    numeroUtente = parseInt(prompt("inserisci un numero da 1 a 5"));
+    isDuplicated = checkDuplicate(posizioneUtente, numeroUtente);
+  }
+  posizioneUtente[i] = numeroUtente;
 }
+console.log(posizioneUtente);
