@@ -21,8 +21,39 @@ var numRange = 100;
 var minePosition = [];
 // lista dei numeri inseriti
 var userPosition = [];
+// livello raggiunto
+var levelPosition = 0;
 // vincitori ottimisti
 var vinto = true;
+
+// all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
+// con difficoltà 0 => tra 1 e 100
+// con difficoltà 1 =>  tra 1 e 80
+// con difficoltà 2 => tra 1 e 50
+var levelDifficulty = 0;
+var verificaLvl = false;
+while (verificaLvl == false) {
+  levelDifficulty = parseInt(prompt("Inserisci livello di difficola\n 0 => tra 1 e 100\n 1 =>  tra 1 e 80\n 2 => tra 1 e 50"));
+  if (levelDifficulty == 0) {
+    var mine = 16;
+    var numRange = 100;
+    var verificaLvl = true;
+  }else if (levelDifficulty == 1){
+    var mine = 16;
+    var numRange = 80;
+    var verificaLvl = true;
+  }else if (levelDifficulty == 2){
+    var mine = 16;
+    var numRange = 50;
+    var verificaLvl = true;
+  }else {
+    alert("prego reinserire il livello corretto");
+    verificaLvl = false;
+  }
+  console.log("Livello selezionato" + levelDifficulty);
+
+}
+
 
 // funzione che controlla un valore con gli elementi di un array
 function isDuplicate(numList, numInserted) {
@@ -88,6 +119,7 @@ while (i < (numRange - mine) && finito == false) {
   } else {
     userPosition[i] = numUtente;
     console.log(userPosition);
+    levelPosition = i;
     i++
   }
 
@@ -95,7 +127,9 @@ while (i < (numRange - mine) && finito == false) {
 
 
 if (vinto == true) {
-  alert("hai vinto!");
+  alert("hai vinto!\n hai raggiunto il " + levelPosition + " livello");
+
 } else {
-  alert("mi dispiace e' esplosa la mina! Hai perso.")
+  alert("mi dispiace e' esplosa la mina! Hai perso.\n sei arrivato fino al " + levelPosition + " livello")
+
 }
