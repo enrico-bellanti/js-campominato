@@ -1,0 +1,54 @@
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ }
+
+ /* features */
+
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: lightblue;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  margin: auto;
+  list-style: none;
+  background-color: lightgreen;
+}
+
+ul.80_box{
+  width: 320;
+}
+
+ul.50_box{
+  width: 200;
+}
+
+ul li{
+  width: 40px;
+  height: 40px;
+  background-color: #888888;
+  border: 1px solid #000;
+}
+ul li:active{
+  background-color: #fff;
+}
+
+/* form input */
+form {
+  margin: auto;
+}
+
+input, label, button {
+  width: 50px;
+  height: 30px;
+}

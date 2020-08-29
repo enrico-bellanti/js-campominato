@@ -26,6 +26,36 @@ var levelPosition = 0;
 // vincitori ottimisti
 var vinto = true;
 
+// funzione che controlla un valore con gli elementi di un array
+function isDuplicate(numList, numInserted) {
+  var i = 0;
+  var duplicateOn = false;
+  while (i < numList.length && duplicateOn == false) {
+    if (numList[i] == numInserted) {
+      duplicateOn = true;
+    }
+    i++
+  }
+  return duplicateOn;
+}
+
+// funzione per disegnare il campo Minato -
+// fai in modo di inserire il valore i all'interno di ogni <li>
+function drawMineset(numRange) {
+  if (numRange == 80) {
+    document.getElementById("game_area").classList.add("80_box");
+  } else if (numRange == 50) {
+    document.getElementById("game_area").classList.add("50_box");
+  }
+
+  for (var i = 0; i < numRange; i++) {
+    var box = document.getElementById("game_area").innerHTML;
+    box = box +  "<li class = 'box' value='" + (i+1) + "'>"+ (i+1) +"</li>";
+    document.getElementById("game_area").innerHTML = box;
+  }
+}
+
+
 // all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
 // con difficoltà 0 => tra 1 e 100
 // con difficoltà 1 =>  tra 1 e 80
@@ -54,19 +84,8 @@ while (verificaLvl == false) {
 
 }
 
-
-// funzione che controlla un valore con gli elementi di un array
-function isDuplicate(numList, numInserted) {
-  var i = 0;
-  var duplicateOn = false;
-  while (i < numList.length && duplicateOn == false) {
-    if (numList[i] == numInserted) {
-      duplicateOn = true;
-    }
-    i++
-  }
-  return duplicateOn;
-}
+// disegno il campo Minato
+drawMineset(numRange);
 
 
 // creo un ciclo che mi genera 16 numeri
@@ -77,12 +96,8 @@ for (var i = 0; i < mine; i++) {
 
   minePosition[i] = numCpu;
 }
+
 console.log("numeri posizione mine " + minePosition);
-
-
-// chiedo all'utente un numero da 1 a 100
-// controllo che sia da 0 a 100 e che non sia gia' stato scritto nell'array
-
 console.log("numeri da 1 a " + numRange);
 console.log("Tot livelli: " + (numRange - mine));
 
@@ -91,6 +106,8 @@ var i = 0;
 var finito = false;
 while (i < (numRange - mine) && finito == false) {
   console.log("livello: " + (i+1));
+
+
 
   // controllo che il numero non sia gia' stato inserito o che non e' all'interno nel numRange
   var numValidate = false;
@@ -106,6 +123,8 @@ while (i < (numRange - mine) && finito == false) {
       numValidate = true;
     }
   } while (numValidate == false);
+
+
 
   // se il numero e' stato validato allora controllo se e' uguale alla posizione delle mine
   console.log("numero inserito: " + numUtente)
@@ -127,7 +146,7 @@ while (i < (numRange - mine) && finito == false) {
 
 
 if (vinto == true) {
-  alert("hai vinto!\n hai raggiunto il " + levelPosition + " livello");
+  alert("hai vinto!\n hai raggiunto il " + (levelPosition+1) + " livello");
 
 } else {
   alert("mi dispiace e' esplosa la mina! Hai perso.\n sei arrivato fino al " + levelPosition + " livello")
