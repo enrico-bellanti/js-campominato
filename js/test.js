@@ -107,9 +107,9 @@ console.log("Tot livelli: " + (numRange - mine));
       while (click == true) {
 
         if (isDuplicate(userPosition, numCheck)) {
-          this.value = "";
+          this.value = 0;
           console.log("il valore adesso e' diventato: " + this.getAttribute("value"));
-        }else if (numCheck == "") {
+        }else if (numCheck == 0) {
           alert("valore gia' inserito"); //vorrei che qui non succedesse nulla
         } else {
           var numUtente = this.getAttribute("value");
