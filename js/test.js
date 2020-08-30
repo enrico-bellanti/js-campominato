@@ -108,6 +108,7 @@ console.log("Tot livelli: " + (numRange - mine));
 
         if (numCheck != 0) {
           var numUtente = this.getAttribute("value");
+          isValidNum = true;
         }else if (numCheck == 0) {
           alert("valore gia' inserito"); //vorrei che qui non succedesse nulla
         }
