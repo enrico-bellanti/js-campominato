@@ -57,8 +57,8 @@ while (verificaLvl == false) {
     var numRange = 100;
     var verificaLvl = true;
   }else if (levelDifficulty == 1){
-    var mine = 16;
-    var numRange = 80;
+    var mine = 4;
+    var numRange = 10;
     var verificaLvl = true;
   }else if (levelDifficulty == 2){
     var mine = 16;
@@ -68,7 +68,7 @@ while (verificaLvl == false) {
     alert("prego reinserire il livello corretto");
     verificaLvl = false;
   }
-  console.log("Livello selezionato" + levelDifficulty);
+  console.log("Livello selezionato " + levelDifficulty);
 
 }
 
@@ -98,19 +98,40 @@ console.log("Tot livelli: " + (numRange - mine));
   for (var i = 0; i < listBox.length; i++) {
     listBox[i].addEventListener("click", function(){
       // creo un ciclo per controllare se il numero era stato gia' stato inserito
-      while (y = true) {
-        var numUtente = this.getAttribute("value");
-        if (isDuplicate(userPosition, numUtente)) {
-          y = true;
-        }else {
-          y = false;
-          console.log("numero cliccato dentro ciclo " + numUtente)
+      // se il valore cliccato non e' stato gia' cliccato allora assegno la variabile
+      // numUtente altrimenti ....
+
+      var numCheck = this.getAttribute("value");
+      var click = true;
+      var isValidNum = false;
+      while (click == true) {
+
+        if (isDuplicate(userPosition, numCheck)) {
+          this.value = "";
+          console.log("il valore adesso e' diventato: " + this.getAttribute("value"));
+        }else if (numCheck == "") {
+          alert("valore gia' inserito"); //vorrei che qui non succedesse nulla
+        } else {
+          var numUtente = this.getAttribute("value");
+          click = false;
+          isValidNum = true;
+          console.log("numero cliccato" + numUtente)
         }
 
+        // controllo che il numero inserito non sia una mina
+        while (isValidNum) {
+          if (isDuplicate(minePosition, numUtente)) {
+            alert("MINA! HAI PERSO.")
+          } else {
+            var i = userPosition.length;
+            userPosition[i] = numUtente;
+            i++;
+            console.log(userPosition);
+            alert("Livello " + (i) + " Completato")
+            isValidNum = false;
+          }
+        }
       }
-      console.log("numero cliccato fuori ciclo" + numUtente)
-      // controllo che il numero inserito non sia una mina
-
 
     });
   }
