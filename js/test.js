@@ -126,6 +126,7 @@ console.log("Tot livelli: " + (numRange - mine));
             this.value = 0;
             console.log("il valore adesso e' diventato: " + this.getAttribute("value"));
             isValidNum = false;
+            click = false;
 
           }
         }
