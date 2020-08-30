@@ -22,7 +22,6 @@ ul {
   width: 400px;
   margin: auto;
   list-style: none;
-  background-color: lightgreen;
 }
 
 ul.80_box{
@@ -36,11 +35,18 @@ ul.50_box{
 ul li{
   width: 40px;
   height: 40px;
+  text-align: center;
+  line-height: 40px;
   background-color: #888888;
   border: 1px solid #000;
+  cursor: pointer;
 }
 ul li:active{
   background-color: #fff;
+}
+
+.green {
+  background-color: #00ff00;
 }
 
 /* form input */
@@ -51,4 +57,48 @@ form {
 input, label, button {
   width: 50px;
   height: 30px;
+}
+
+/* layout */
+
+
+
+#layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+}
+
+#win, #lose {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  font-size: 60px;
+  pointer-events: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#win{
+  color: #00ff00;
+  background-image: url(../img/755t.gif);
+}
+
+#lose{
+  color: red;
+  background-image: url(../img/XAch.gif);
+}
+
+#win.display_on, #lose.display_on{
+  display: flex;
 }

@@ -53,15 +53,12 @@ var verificaLvl = false;
 while (verificaLvl == false) {
   levelDifficulty = parseInt(prompt("Inserisci livello di difficola\n 0 => tra 1 e 100\n 1 =>  tra 1 e 80\n 2 => tra 1 e 50"));
   if (levelDifficulty == 0) {
-    var mine = 16;
     var numRange = 100;
     var verificaLvl = true;
   }else if (levelDifficulty == 1){
-    var mine = 4;
-    var numRange = 10;
+    var numRange = 80;
     var verificaLvl = true;
   }else if (levelDifficulty == 2){
-    var mine = 16;
     var numRange = 50;
     var verificaLvl = true;
   }else {
@@ -93,45 +90,35 @@ console.log("Tot livelli: " + (numRange - mine));
 
 
 // attivo i box pronti per essere innescti al click
-  var listBox = document.getElementsByClassName("box");
+var listBox = document.getElementsByClassName("box");
 
   for (var i = 0; i < listBox.length; i++) {
-    listBox[i].addEventListener("click", function(){
-      // creo un ciclo per controllare se il numero era stato gia' stato inserito
-      // se il valore cliccato non e' stato gia' cliccato allora assegno la variabile
-      // numUtente altrimenti ....
+    listBox[i].addEventListener("click", function () {
+      // recupero il valore cliccato
+      numUtente = this.getAttribute("value");
 
-      var numCheck = this.getAttribute("value");
-      var click = true;
-      var isValidNum = false;
-      while (click == true) {
-
-        if (numCheck != 0) {
-          var numUtente = this.getAttribute("value");
-          isValidNum = true;
-        }else if (numCheck == 0) {
-          alert("valore gia' inserito"); //vorrei che qui non succedesse nulla
-          click = false;
-        }
-
-        // controllo che il numero inserito non sia una mina
-        while (isValidNum) {
-          if (isDuplicate(minePosition, numUtente)) {
-            alert("MINA! HAI PERSO.")
-          } else {
-            var i = userPosition.length;
-            userPosition[i] = numUtente;
-            i++;
-            console.log(userPosition);
-            alert("Livello " + (i) + " Completato")
-            this.value = 0;
-            console.log("il valore adesso e' diventato: " + this.getAttribute("value"));
-            isValidNum = false;
-            click = false;
-
+      // se il valore e' diverso da 0 allora non e' stato cliccato
+      if (numUtente != 0) {
+        // verifico che non e' una mina
+        if (isDuplicate(minePosition, numUtente)) {
+          // alert("MINA!\N HAI PERSO!")
+          document.getElementById("lose").classList.add("display_on");
+        }else {
+          // aggiungo il numero alla lista
+          userPosition.push(numUtente);
+          if (userPosition.length == (numRange - mine)) {
+            document.getElementById("win").classList.add("display_on");
           }
+          // setto il value di <li> a 0
+          this.value = 0;
+          this.classList.add("green");
+          alert("Livello: " + userPosition.length + "\nCompletato")
         }
       }
 
     });
+
+    // controllo se il numero dei box inseriti e' uguale a (numRange - mine)
+    // se si dichiaro vittoria
+
   }
