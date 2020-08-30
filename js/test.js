@@ -111,6 +111,7 @@ console.log("Tot livelli: " + (numRange - mine));
           isValidNum = true;
         }else if (numCheck == 0) {
           alert("valore gia' inserito"); //vorrei che qui non succedesse nulla
+          click = false;
         }
 
         // controllo che il numero inserito non sia una mina
