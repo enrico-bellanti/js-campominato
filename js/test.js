@@ -106,16 +106,10 @@ console.log("Tot livelli: " + (numRange - mine));
       var isValidNum = false;
       while (click == true) {
 
-        if (isDuplicate(userPosition, numCheck)) {
-          this.value = 0;
-          console.log("il valore adesso e' diventato: " + this.getAttribute("value"));
+        if (numCheck != 0) {
+          var numUtente = this.getAttribute("value");
         }else if (numCheck == 0) {
           alert("valore gia' inserito"); //vorrei che qui non succedesse nulla
-        } else {
-          var numUtente = this.getAttribute("value");
-          click = false;
-          isValidNum = true;
-          console.log("numero cliccato" + numUtente)
         }
 
         // controllo che il numero inserito non sia una mina
@@ -128,7 +122,10 @@ console.log("Tot livelli: " + (numRange - mine));
             i++;
             console.log(userPosition);
             alert("Livello " + (i) + " Completato")
+            this.value = 0;
+            console.log("il valore adesso e' diventato: " + this.getAttribute("value"));
             isValidNum = false;
+
           }
         }
       }
