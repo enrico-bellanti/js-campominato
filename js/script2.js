@@ -18,13 +18,17 @@ var chance = range - mine;
 var listMine = [];
 var listUser = [];
 // Creo una funzione che controlla un dato se e' presente in un array
-function checkInArray(array, element) {
-  if (array.indexOf(element) == -1) {
-    return true;
+function checkInArray(numList, numInserted) {
+  var i = 0;
+  var duplicateOn = false;
+  while (i < numList.length && duplicateOn == false) {
+    if (numList[i] == numInserted) {
+      duplicateOn = true;
+    }
+    i++
   }
-  return false;
+  return duplicateOn;
 }
-
 
 // genero 16 numeri casuali all'interno di un raggiunge
 // controllo che non ci siano numeri uguali
@@ -42,20 +46,21 @@ console.log("lista mine " + listMine);
 // chiedo all'utente di inserire un numero all'interno del range - mine
 // controllo che il numero non sia gia' inserito
 var isMine = false;
-while (listUser.length < 4 && isMine == false) {
+while (listUser.length < chance && isMine == false) {
   var numUser = prompt("Inserisci un numero da 1 a " + range);
 
 // controlli
-  console.log("E' gia stato inserito? " + !checkInArray(listMine, numUser));
   console.log(numUser);
-  console.log("E' una mina?" + checkInArray(listMine, numUser))
+  console.log("E' gia stato inserito? " + checkInArray(listUser, numUser));
+  console.log("E' una mina? " + checkInArray(listMine, numUser))
+  if (isNaN(numUser) || numUser < 1 || numUser > range) {
+    alert("attenzione inserisci un numero da 1 a " + range);
+  }else if (checkInArray(listUser, numUser) == false) {
 
-  if (!checkInArray(listUser, numUser)) {
-    if (checkInArray(listMine, numUser)) {
-      alert("bomba");
-      isMine = true;
-    } else {
+    if (checkInArray(listMine, numUser) == false) {
       listUser.push(numUser);
+    } else {
+      isMine = true;
     }
 
   } else {
@@ -63,4 +68,11 @@ while (listUser.length < 4 && isMine == false) {
   }
   // controllo lista utente
   console.log("lista numeri utente: " + listUser);
+}
+
+// condizione che conferma se e' una bomba o vittoria del giocatore
+if (isMine) {
+  alert("Mi dispiace hai perso hai beccato la Bomba!");
+} else {
+  alert("Complimenti hai completato il gioco");
 }
