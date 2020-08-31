@@ -146,9 +146,10 @@ while (i < (numRange - mine) && finito == false) {
 
 
 if (vinto == true) {
-  alert("hai vinto!\n hai raggiunto il " + (levelPosition+1) + " livello");
-
+  alert("Hai raggiunto il " + (levelPosition.length) + " livello");
+  if (userPosition.lenght == numRange - mine) {
+    alert("HAI VINTO!");
+  }
 } else {
-  alert("mi dispiace e' esplosa la mina! Hai perso.\n sei arrivato fino al " + levelPosition + " livello")
-
+  alert("mi dispiace e' esplosa la mina! Hai perso.\n sei arrivato fino al " + levelPosition + " livello");
 }
