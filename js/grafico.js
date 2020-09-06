@@ -92,6 +92,7 @@ console.log("Tot livelli: " + (numRange - mine));
 var listBox = document.getElementsByClassName("box");
 
   for (var i = 0; i < listBox.length; i++) {
+
     listBox[i].addEventListener("click", function () {
       // recupero il valore cliccato
       numUtente = this.getAttribute("value");

@@ -24,13 +24,13 @@ ul {
   list-style: none;
 }
 
-ul.80_box{
+/* ul.80_box{
   width: 320;
 }
 
 ul.50_box{
   width: 200;
-}
+} */
 
 ul li{
   width: 40px;
